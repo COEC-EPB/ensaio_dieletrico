@@ -199,7 +199,18 @@
 
 
     <label>Norma Utilizada:</label>
-    <textarea name="norma" placeholder="Ex: ASTM F711, IEC 60855, etc."></textarea>
+<select name="norma" required>
+  <option value="">Selecione</option>
+  <option>NBR 8221 - Capacete de segurança para uso ocupacional</option>
+  <option>NBR 10622 - Luvas isolantes de borracha</option>
+  <option>NBR 10623 - Mangas isolantes de borracha</option>
+  <option>NBR 11856 - Ferramentas e acessórios para trabalhos em redes energizadas de distribuição</option>
+  <option>NBR 5720 - Coberturas sólidas</option>
+  <option>NBR 11854 - Bastão isolante para trabalho em redes energizadas de distribuição</option>
+  <option>NBR 11855 - Plataforma isolante para trabalho em redes energizadas de distribuição</option>
+  <option>NBR 14540 - Bastão e escada isolantes e ferragens para trabalho em instalação energizada – Transmissão</option>
+  <option>NBR 16092 - Cestas aéreas</option>
+</select>
 
     <label>Correntes de Fuga (µA):</label>
     <input type="number" step="0.01" name="corrente_fuga" placeholder="Ex: 1.25" required>
