@@ -97,19 +97,19 @@
 <div class="container">
   <h2>Formulário – Ensaio Dielétrico</h2>
 
-  <form>
+  <form id="formEnsaio">
 
     <label>Data:</label>
-    <input type="date" required>
+    <input type="date" name="data" required>
 
     <label>Email:</label>
-    <input type="email" placeholder="seuemail@empresa.com" required>
+    <input type="email" name="email" placeholder="seuemail@empresa.com" required>
 
     <label>Nome:</label>
-    <input type="text" placeholder="Seu nome" required>
+    <input type="text" name="nome" placeholder="Seu nome" required>
 
     <label>Departamento:</label>
-    <select required>
+    <select name="departamento" required>
       <option value="">Selecione</option>
       <option>DEOP</option>
       <option>DCMD</option>
@@ -123,7 +123,7 @@
     </select>
 
     <label>Regional:</label>
-    <select required>
+    <select name="regional" required>
       <option value="">Selecione</option>
       <option>Leste</option>
       <option>Centro</option>
@@ -131,28 +131,28 @@
     </select>
 
     <label>Código Inicial:</label>
-    <input type="text" required>
+    <input type="text" name="codigo_inicial" required>
 
     <label>Código Final:</label>
-    <input type="text" required>
+    <input type="text" name="codigo_final" required>
 
     <label>Elementos:</label>
-    <textarea placeholder="Descreva os elementos"></textarea>
+    <textarea name="elementos" placeholder="Descreva os elementos"></textarea>
 
     <label>Equipamentos Isolantes:</label>
-    <textarea placeholder="Descreva os equipamentos isolantes"></textarea>
+    <textarea name="equipamentos" placeholder="Descreva os equipamentos isolantes"></textarea>
 
     <label>Tipo de Ensaio:</label>
-    <textarea placeholder="Ex: Ensaio Dielétrico conforme rotina xx"></textarea>
+    <textarea name="tipo_ensaio" placeholder="Ex: Ensaio Dielétrico conforme rotina xx"></textarea>
 
     <label>Norma Utilizada:</label>
-    <textarea placeholder="Ex: ASTM F711, IEC 60855, etc."></textarea>
+    <textarea name="norma" placeholder="Ex: ASTM F711, IEC 60855, etc."></textarea>
 
     <label>Correntes de Fuga (µA):</label>
-    <input type="number" step="0.01" placeholder="Ex: 1.25" required>
+    <input type="number" step="0.01" name="corrente_fuga" placeholder="Ex: 1.25" required>
 
     <label>Resultado do Ensaio:</label>
-    <select required>
+    <select name="resultado" required>
       <option value="">Selecione</option>
       <option>Aprovado</option>
       <option>Reprovado</option>
@@ -162,6 +162,42 @@
 
   </form>
 </div>
+
+<script>
+document.getElementById("formEnsaio").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const form = e.target;
+
+    const dados = {
+        data: form.data.value,
+        email: form.email.value,
+        nome: form.nome.value,
+        departamento: form.departamento.value,
+        regional: form.regional.value,
+        codigo_inicial: form.codigo_inicial.value,
+        codigo_final: form.codigo_final.value,
+        elementos: form.elementos.value,
+        equipamentos: form.equipamentos.value,
+        tipo_ensaio: form.tipo_ensaio.value,
+        norma: form.norma.value,
+        corrente_fuga: form.corrente_fuga.value,
+        resultado: form.resultado.value
+    };
+
+    const response = await fetch("https://SEU-WORKER.workers.dev/salvar-ensaio", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dados)
+    });
+
+    const res = await response.json();
+
+    alert(res.message || res.error);
+
+    if (res.message) form.reset();
+});
+</script>
 
 </body>
 </html>
