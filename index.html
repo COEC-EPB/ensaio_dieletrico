@@ -1,2 +1,143 @@
-# ensaio_dieletrico
-Ensaio dieletrico
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ensaio Dielétrico</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #e9eef3;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    margin: auto;
+    max-width: 800px;
+    background: #fff;
+    padding: 25px;
+    margin-top: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  h2 {
+    text-align: center;
+    color: #005f8f;
+    margin-bottom: 25px;
+  }
+
+  label {
+    font-weight: bold;
+    margin-top: 15px;
+    display: block;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+    font-size: 15px;
+  }
+
+  textarea {
+    height: 90px;
+  }
+
+  button {
+    margin-top: 25px;
+    width: 100%;
+    padding: 15px;
+    background: #0097CE;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #0079a6;
+  }
+</style>
+
+</head>
+<body>
+
+<div class="container">
+  <h2>Formulário – Ensaio Dielétrico</h2>
+
+  <form>
+
+    <label>Data:</label>
+    <input type="date" required>
+
+    <label>Email:</label>
+    <input type="email" placeholder="seuemail@empresa.com" required>
+
+    <label>Nome:</label>
+    <input type="text" placeholder="Seu nome" required>
+
+    <label>Departamento:</label>
+    <select required>
+      <option value="">Selecione</option>
+      <option>DEOP</option>
+      <option>DCMD</option>
+      <option>AUTOMAÇÃO</option>
+      <option>DCMD_LV</option>
+      <option>DEAT</option>
+      <option>DECP</option>
+      <option>DESC</option>
+      <option>DESU</option>
+      <option>SESMT</option>
+    </select>
+
+    <label>Regional:</label>
+    <select required>
+      <option value="">Selecione</option>
+      <option>Leste</option>
+      <option>Centro</option>
+      <option>Oeste</option>
+    </select>
+
+    <label>Código Inicial:</label>
+    <input type="text" required>
+
+    <label>Código Final:</label>
+    <input type="text" required>
+
+    <label>Elementos:</label>
+    <textarea placeholder="Descreva os elementos"></textarea>
+
+    <label>Equipamentos Isolantes:</label>
+    <textarea placeholder="Descreva os equipamentos isolantes"></textarea>
+
+    <label>Tipo de Ensaio:</label>
+    <textarea placeholder="Ex: Ensaio Dielétrico conforme rotina xx"></textarea>
+
+    <label>Norma Utilizada:</label>
+    <textarea placeholder="Ex: ASTM F711, IEC 60855, etc."></textarea>
+
+    <label>Correntes de Fuga (µA):</label>
+    <input type="number" step="0.01" placeholder="Ex: 1.25" required>
+
+    <label>Resultado do Ensaio:</label>
+    <select required>
+      <option value="">Selecione</option>
+      <option>Aprovado</option>
+      <option>Reprovado</option>
+    </select>
+
+    <button type="submit">Enviar Registro</button>
+
+  </form>
+</div>
+
+</body>
+</html>
