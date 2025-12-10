@@ -5,29 +5,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ensaio Dielétrico</title>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-
 <style>
+  :root {
+    --azul: #0097CE;
+    --azul-escuro: #0079A6;
+    --laranja: #F36F21;
+    --fundo: #eef3f6;
+  }
+
   body {
-    font-family: Arial, sans-serif;
-    background: #e9eef3;
     margin: 0;
     padding: 0;
+    background: var(--fundo);
+    font-family: Arial, sans-serif;
+  }
+
+  .header-bar {
+    width: 100%;
+    height: 6px;
+    background: var(--laranja);
   }
 
   .container {
-    margin: auto;
-    max-width: 800px;
-    background: #fff;
-    padding: 25px;
-    margin-top: 40px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    max-width: 850px;
+    background: white;
+    margin: 40px auto;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    border-top: 8px solid var(--azul);
   }
 
   h2 {
     text-align: center;
-    color: #005f8f;
+    color: var(--azul-escuro);
+    font-size: 28px;
     margin-bottom: 25px;
   }
 
@@ -35,40 +47,52 @@
     font-weight: bold;
     margin-top: 15px;
     display: block;
+    color: #333;
   }
 
   input, select, textarea {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     margin-top: 6px;
-    border: 1px solid #bbb;
-    border-radius: 8px;
+    border: 1px solid #ccd4dd;
+    border-radius: 10px;
     font-size: 15px;
+    transition: 0.3s ease;
+    background: #fafafa;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--azul);
+    background: #fff;
+    box-shadow: 0 0 6px rgba(0,151,206,0.3);
+    outline: none;
   }
 
   textarea {
-    height: 90px;
+    height: 100px;
   }
 
   button {
-    margin-top: 25px;
+    margin-top: 30px;
     width: 100%;
     padding: 15px;
-    background: #0097CE;
-    color: white;
     font-size: 18px;
+    background: var(--azul);
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
+    color: white;
     cursor: pointer;
+    transition: 0.3s ease;
   }
 
   button:hover {
-    background: #0079a6;
+    background: var(--azul-escuro);
   }
 </style>
-
 </head>
 <body>
+
+<div class="header-bar"></div>
 
 <div class="container">
   <h2>Formulário – Ensaio Dielétrico</h2>
