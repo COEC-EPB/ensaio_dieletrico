@@ -100,13 +100,13 @@
   <form id="formEnsaio">
 
     <label>Data:</label>
-    <input type="date" name="data" id="dataCampo" required>
+    <input type="date" name="data" id="data" required>
 
     <label>Email:</label>
-    <input type="email" name="email" placeholder="seuemail@empresa.com" required>
+    <input type="email" name="email" id="email" placeholder="seuemail@empresa.com" required>
 
     <label>Nome:</label>
-    <input type="text" name="nome" placeholder="Seu nome" required>
+    <input type="text" name="nome" id="nome" placeholder="Seu nome" required>
 
     <label>Departamento:</label>
     <select name="departamento" required>
@@ -137,51 +137,50 @@
     <input type="text" name="codigo_final" required>
 
     <label>Elementos:</label>
-    <input type="elementos" name="elementos" required>
-    
-    <label>Equipamentos Isolantes:</label>
-  <select name="equipamentos" required>
-  <option value="">Selecione</option>
-  <option>Luva Isolante BT</option>
-  <option>Luva Isolante MT</option>
-  <option>Manga Isolante BT</option>
-  <option>By Pass</option>
-  <option>Manta Isolante BT</option>
-  <option>Bastão Vara de Manobra</option>
-  <option>Bastão Pega tudo</option>
-  <option>Tesourão a Distância</option>
-  <option>Aterramento MT</option>
-  <option>Bastão Vara Telescópica</option>
-  <option>Luva Isolante SED</option>
-  <option>Bastão Liso</option>
-  <option>Bastão Aspiral</option>
-  <option>Escada Pedarol</option>
-  <option>Bastão Separador de Corda</option>
-  <option>Travessa de Andaime</option>
-  <option>Andaime Isolante</option>
-  <option>Cobertura Circular</option>
-  <option>SKY Liner</option>
-  <option>Cobertura de Cond. Flexivel</option>
-  <option>Bastão Universal</option>
-  <option>SKY Lança Classe B - 69 KW</option>
-  <option>Tahla</option>
-  <option>Bastão Suporte By Pass</option>
-  <option>Lençou Isolante LV</option>
-  <option>SKY Lança Classe C - 46 KW</option>
-  <option>Manga Isolante MT</option>
-  <option>Tesourão Pequeno</option>
-  <option>Cobertura de Cond. Rigida</option>
-  <option>Bastão de Tração</option>
-  <option>Bastão Tensor</option>
-  <option>Bastão Garra</option>
-  <option>Banqueta Isolada</option>
-  <option>Separador de Escada</option>
-  <option>Escada 13.8 kV</option>
-  <option>Escada 69 kV</option>
-  <option>Bastão de Berço</option>
-  <option>Fasimetro</option>
-</select>
+    <input type="text" name="elementos" required>
 
+    <label>Equipamentos Isolantes:</label>
+    <select name="equipamentos" required>
+      <option value="">Selecione</option>
+      <option>Luva Isolante BT</option>
+      <option>Luva Isolante MT</option>
+      <option>Manga Isolante BT</option>
+      <option>By Pass</option>
+      <option>Manta Isolante BT</option>
+      <option>Bastão Vara de Manobra</option>
+      <option>Bastão Pega tudo</option>
+      <option>Tesourão a Distância</option>
+      <option>Aterramento MT</option>
+      <option>Bastão Vara Telescópica</option>
+      <option>Luva Isolante SED</option>
+      <option>Bastão Liso</option>
+      <option>Bastão Aspiral</option>
+      <option>Escada Pedarol</option>
+      <option>Bastão Separador de Corda</option>
+      <option>Travessa de Andaime</option>
+      <option>Andaime Isolante</option>
+      <option>Cobertura Circular</option>
+      <option>SKY Liner</option>
+      <option>Cobertura de Cond. Flexivel</option>
+      <option>Bastão Universal</option>
+      <option>SKY Lança Classe B - 69 KW</option>
+      <option>Talha</option>
+      <option>Bastão Suporte By Pass</option>
+      <option>Lençou Isolante LV</option>
+      <option>SKY Lança Classe C - 46 KW</option>
+      <option>Manga Isolante MT</option>
+      <option>Tesourão Pequeno</option>
+      <option>Cobertura de Cond. Rigida</option>
+      <option>Bastão de Tração</option>
+      <option>Bastão Tensor</option>
+      <option>Bastão Garra</option>
+      <option>Banqueta Isolada</option>
+      <option>Separador de Escada</option>
+      <option>Escada 13.8 kV</option>
+      <option>Escada 69 kV</option>
+      <option>Bastão de Berço</option>
+      <option>Fasimetro</option>
+    </select>
 
     <label>Tipo de Ensaio:</label>
 <select name="tipo_ensaio" required>
@@ -198,8 +197,7 @@
   <option>Tensão Aplicada 14KV C.A por 1 min</option>
 </select>
 
-
-    <label>Norma Utilizada:</label>
+<label>Norma Utilizada:</label>
 <select name="norma" required>
   <option value="">Selecione</option>
   <option>NBR 8221 - Capacete de segurança para uso ocupacional</option>
@@ -229,11 +227,26 @@
 </div>
 
 <script>
-  // Preenche automaticamente a data com o dia atual
-document.addEventListener("DOMContentLoaded", () => {
-    const hoje = new Date().toISOString().split("T")[0];
-    document.getElementById("dataCampo").value = hoje;
+// === DATA AUTOMÁTICA ===
+document.getElementById("data").value = new Date().toISOString().split("T")[0];
+
+// === NOME AUTOMÁTICO COM BASE NO EMAIL ===
+document.getElementById("email").addEventListener("input", function () {
+  const email = this.value.toLowerCase();
+  const nomeField = document.getElementById("nome");
+
+  const listaNomes = {
+    "wanderberg.costa@energisa.com.br": "Wandemberg Costa",
+    "wandemberg.costa@energisa.com.br": "Wandemberg Costa",
+    "pedro.fillype@energisa.com.br": "Pedro Fillype"
+  };
+
+  if (listaNomes[email]) {
+    nomeField.value = listaNomes[email];
+  }
 });
+
+// === ENVIO PARA O WORKER ===
 document.getElementById("formEnsaio").addEventListener("submit", async function(e) {
     e.preventDefault();
 
@@ -262,7 +275,6 @@ document.getElementById("formEnsaio").addEventListener("submit", async function(
     });
 
     const res = await response.json();
-
     alert(res.message || res.error);
 
     if (res.message) form.reset();
