@@ -100,7 +100,7 @@
   <form id="formEnsaio">
 
     <label>Data:</label>
-    <input type="date" name="data" required>
+    <input type="date" name="data" id="dataCampo" required>
 
     <label>Email:</label>
     <input type="email" name="email" placeholder="seuemail@empresa.com" required>
@@ -229,6 +229,11 @@
 </div>
 
 <script>
+  // Preenche automaticamente a data com o dia atual
+document.addEventListener("DOMContentLoaded", () => {
+    const hoje = new Date().toISOString().split("T")[0];
+    document.getElementById("dataCampo").value = hoje;
+});
 document.getElementById("formEnsaio").addEventListener("submit", async function(e) {
     e.preventDefault();
 
