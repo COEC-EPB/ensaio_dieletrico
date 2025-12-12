@@ -130,6 +130,9 @@
       <option>Oeste</option>
     </select>
 
+    <label>Localidade:</label>
+    <input type="text" name="localidade" required>
+
     <label>Código Inicial:</label>
     <input type="text" name="cod_inicial" required>
 
@@ -258,6 +261,7 @@ document.getElementById("formEnsaio").addEventListener("submit", async function(
         nome: form.nome.value,
         departamento: form.departamento.value,
         regional: form.regional.value,
+        localidade: form.localidade.value,
         cod_inicial: form.cod_inicial.value,
         cod_final: form.cod_final.value,
         elementos: form.elementos.value,
