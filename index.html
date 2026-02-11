@@ -38,7 +38,7 @@
     color: var(--text);
   }
 
-  .shell{ width: min(980px, 100%); }
+ .shell{ width: min(1120px, 100%); }
 
   .brand{
     display:flex;
@@ -66,16 +66,16 @@
     overflow:hidden;
   }
 
-  /* LOGIN */
-  #loginView{ width: min(420px, 100%); margin: 0 auto; }
-  .card-header{ padding: 18px 18px 0 18px; }
-  h2{ margin:0; font-size: 18px; }
-  .sub{
-    margin: 6px 0 0 0;
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.35;
-  }
+  /* Login fica central e compacto */
+#loginView{ width: min(460px, 100%); margin: 0 auto; }
+
+/* Form view ocupa bem a tela */
+#formView .card{
+  width: 100%;
+}
+
+/* Um pouco mais de “respiro” */
+.content{ padding: 22px; }
 
   form.login-form{
     padding: 16px 18px 18px 18px;
@@ -83,38 +83,39 @@
     gap: 12px;
   }
   label{
-    font-size: 12px;
-    font-weight: 800;
-    color: #374151;
-    display:flex;
-    align-items:center;
-    gap: 8px;
-    margin-bottom: 6px;
-  }
+  font-size: 13px;
+  font-weight: 900;
+  color: #374151;
+  display:flex;
+  align-items:center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
   .field{ display:grid; gap:6px; }
   .input-wrap{ position: relative; }
 
   input, select{
-    width:100%;
-    padding: 11px 12px 11px 40px;
-    border-radius: 12px;
-    border: 1px solid var(--border);
-    background: #fff;
-    font-size: 14px;
-    outline: none;
-    transition: border-color .15s ease, box-shadow .15s ease, transform .08s ease;
-  }
+  width:100%;
+  padding: 14px 14px 14px 44px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: #fff;
+  font-size: 16px;          /* ✅ melhor em celular */
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease, transform .08s ease;
+}
+select{ padding-left: 14px; }
   select{ padding-left: 12px; } /* select não precisa do ícone dentro */
   input:focus, select:focus{
     border-color: rgba(0,151,206,.55);
     box-shadow: 0 0 0 4px rgba(0,151,206,.16);
   }
   .input-icon{
-    position:absolute; left: 12px; top: 50%;
-    transform: translateY(-50%);
-    color: #9ca3af; font-size: 16px;
-    pointer-events: none;
-  }
+  position:absolute; left: 14px; top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af; font-size: 18px;
+  pointer-events: none;
+}
 
   .row-actions{
     display:flex;
@@ -126,22 +127,22 @@
   .hint{ font-size: 12px; color: var(--muted); }
 
   button{
-    width:100%;
-    padding: 12px 14px;
-    background: var(--primary);
-    border: none;
-    color: #fff;
-    font-size: 15px;
-    font-weight: 800;
-    border-radius: 12px;
-    cursor: pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap: 10px;
-    transition: background .15s ease, transform .08s ease;
-    user-select:none;
-  }
+  width:100%;
+  padding: 14px 16px;
+  background: var(--primary);
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 900;
+  border-radius: 14px;
+  cursor: pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap: 10px;
+  transition: background .15s ease, transform .08s ease;
+  user-select:none;
+}
   button:hover{ background: var(--primary-dark); }
   button:active{ transform: translateY(1px); }
   button:disabled{ opacity: .75; cursor:not-allowed; }
@@ -218,22 +219,24 @@
   }
 
   .grid{
-    display:grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-  }
-  .grid .full{ grid-column: 1 / -1; }
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* ✅ 3 colunas no desktop */
+  gap: 14px;
+}
 
-  .field2 label{ margin-bottom: 6px; }
-  .field2 input, .field2 select{
-    padding: 11px 12px;
-  }
+.grid .full{ grid-column: 1 / -1; }
 
-  .submit-row{ margin-top: 14px; }
+/* Tablet: 2 colunas */
+@media (max-width: 980px){
+  .grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 
-  @media (max-width: 780px){
-    .grid{ grid-template-columns: 1fr; }
-  }
+/* Celular: 1 coluna */
+@media (max-width: 600px){
+  body{ padding: 14px; }
+  .content{ padding: 16px; }
+  .grid{ grid-template-columns: 1fr; }
+}
 
   @media (prefers-reduced-motion: reduce){
     * { transition: none !important; animation: none !important; }
