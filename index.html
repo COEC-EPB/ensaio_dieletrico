@@ -370,6 +370,15 @@
             <span>Registro de Ensaio</span>
             <span class="badge" id="badgeUser">logado</span>
           </div>
+          <a id="btnListar" 
+   href="https://coec-epb.github.io/listar_ensaios/" 
+   target="_blank"
+   style="display:none; text-decoration:none;">
+   <button style="background:#0ea5e9;">
+     <i class="bi bi-list-ul"></i>
+     Listar Ensaios
+   </button>
+</a>
           <button class="btn-logout" onclick="logout()">
             <i class="bi bi-box-arrow-right"></i> Sair
           </button>
@@ -618,15 +627,22 @@ if (!PERMITIDOS.includes(matricula)) {
   }
 
   window.onload = () => {
-    const token = localStorage.getItem("token");
-    const matricula = localStorage.getItem("matricula") || "logado";
-    if (token) {
-      document.getElementById("badgeUser").innerText = matricula;
-      showForm();
-    } else {
-      showLogin();
+  const token = localStorage.getItem("token");
+  const matricula = localStorage.getItem("matricula") || "logado";
+
+  const PERMITIDOS = ["9170", "3080117", "3005906", "8667"];
+
+  if (token) {
+    document.getElementById("badgeUser").innerText = matricula;
+    showForm();
+
+    if (PERMITIDOS.includes(matricula)) {
+      document.getElementById("btnListar").style.display = "inline-block";
     }
-  };
+  } else {
+    showLogin();
+  }
+};
 
   function setLoading(isLoading) {
     const btn = document.getElementById("btnLogin");
