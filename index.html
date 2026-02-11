@@ -38,7 +38,8 @@
     color: var(--text);
   }
 
- .shell{ width: min(1120px, 100%); }
+  /* ✅ mais largo após login */
+  .shell{ width: min(1120px, 100%); }
 
   .brand{
     display:flex;
@@ -66,56 +67,66 @@
     overflow:hidden;
   }
 
-  /* Login fica central e compacto */
-#loginView{ width: min(460px, 100%); margin: 0 auto; }
+  /* LOGIN */
+  #loginView{ width: min(460px, 100%); margin: 0 auto; }
 
-/* Form view ocupa bem a tela */
-#formView .card{
-  width: 100%;
-}
+  .card-header{ padding: 18px 18px 0 18px; }
 
-/* Um pouco mais de “respiro” */
-.content{ padding: 22px; }
+  h2{ margin:0; font-size: 20px; }
+
+  .sub{
+    margin: 8px 0 0 0;
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.45;
+  }
 
   form.login-form{
     padding: 16px 18px 18px 18px;
     display:grid;
     gap: 12px;
   }
+
   label{
-  font-size: 13px;
-  font-weight: 900;
-  color: #374151;
-  display:flex;
-  align-items:center;
-  gap: 8px;
-  margin-bottom: 6px;
-}
+    font-size: 13px;
+    font-weight: 900;
+    color: #374151;
+    display:flex;
+    align-items:center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+
   .field{ display:grid; gap:6px; }
   .input-wrap{ position: relative; }
 
+  /* ✅ inputs maiores / fonte melhor no mobile */
   input, select{
-  width:100%;
-  padding: 14px 14px 14px 44px;
-  border-radius: 14px;
-  border: 1px solid var(--border);
-  background: #fff;
-  font-size: 16px;          /* ✅ melhor em celular */
-  outline: none;
-  transition: border-color .15s ease, box-shadow .15s ease, transform .08s ease;
-}
-select{ padding-left: 14px; }
-  select{ padding-left: 12px; } /* select não precisa do ícone dentro */
+    width:100%;
+    padding: 14px 14px 14px 44px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: #fff;
+    font-size: 16px;
+    outline: none;
+    transition: border-color .15s ease, box-shadow .15s ease, transform .08s ease;
+  }
+  select{ padding-left: 14px; } /* select sem ícone interno */
+
   input:focus, select:focus{
     border-color: rgba(0,151,206,.55);
     box-shadow: 0 0 0 4px rgba(0,151,206,.16);
   }
+
   .input-icon{
-  position:absolute; left: 14px; top: 50%;
-  transform: translateY(-50%);
-  color: #9ca3af; font-size: 18px;
-  pointer-events: none;
-}
+    position:absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+    font-size: 18px;
+    pointer-events: none;
+  }
 
   .row-actions{
     display:flex;
@@ -127,22 +138,22 @@ select{ padding-left: 14px; }
   .hint{ font-size: 12px; color: var(--muted); }
 
   button{
-  width:100%;
-  padding: 14px 16px;
-  background: var(--primary);
-  border: none;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 900;
-  border-radius: 14px;
-  cursor: pointer;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap: 10px;
-  transition: background .15s ease, transform .08s ease;
-  user-select:none;
-}
+    width:100%;
+    padding: 14px 16px;
+    background: var(--primary);
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 900;
+    border-radius: 14px;
+    cursor: pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 10px;
+    transition: background .15s ease, transform .08s ease;
+    user-select:none;
+  }
   button:hover{ background: var(--primary-dark); }
   button:active{ transform: translateY(1px); }
   button:disabled{ opacity: .75; cursor:not-allowed; }
@@ -171,6 +182,7 @@ select{ padding-left: 14px; }
 
   /* FORM */
   #formView{ display:none; }
+
   .topbar{
     display:flex;
     align-items:center;
@@ -199,44 +211,49 @@ select{ padding-left: 14px; }
     padding: 10px 12px;
     border-radius: 12px;
     background: #dc3545;
-    font-weight: 800;
+    font-weight: 900;
   }
   .btn-logout:hover{ background:#b02a37; }
 
-  .content{
-    padding: 18px;
-  }
+  /* ✅ mais espaço depois do login */
+  .content{ padding: 22px; }
 
   .form-title{
     margin: 0 0 6px 0;
-    font-size: 18px;
-    font-weight: 900;
+    font-size: 20px;
+    font-weight: 950;
   }
   .form-sub{
     margin: 0 0 14px 0;
     color: var(--muted);
-    font-size: 13px;
+    font-size: 14px;
   }
 
+  /* ✅ grid 3/2/1 colunas */
   .grid{
-  display:grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr)); /* ✅ 3 colunas no desktop */
-  gap: 14px;
-}
+    display:grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .grid .full{ grid-column: 1 / -1; }
 
-.grid .full{ grid-column: 1 / -1; }
+  .field2 label{ margin-bottom: 6px; }
+  .field2 input, .field2 select{
+    padding: 14px 14px;
+    font-size: 16px;
+  }
 
-/* Tablet: 2 colunas */
-@media (max-width: 980px){
-  .grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
+  .submit-row{ margin-top: 14px; }
 
-/* Celular: 1 coluna */
-@media (max-width: 600px){
-  body{ padding: 14px; }
-  .content{ padding: 16px; }
-  .grid{ grid-template-columns: 1fr; }
-}
+  @media (max-width: 980px){
+    .grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 600px){
+    body{ padding: 14px; }
+    .content{ padding: 16px; }
+    .grid{ grid-template-columns: 1fr; }
+  }
 
   @media (prefers-reduced-motion: reduce){
     * { transition: none !important; animation: none !important; }
@@ -327,6 +344,22 @@ select{ padding-left: 14px; }
               </div>
 
               <div class="field2">
+                <label>Departamento</label>
+                <select name="departamento" required>
+                  <option value="">Selecione</option>
+                  <option>DEOP</option>
+                  <option>DCMD</option>
+                  <option>AUTOMAÇÃO</option>
+                  <option>DCMD_LV</option>
+                  <option>DEAT</option>
+                  <option>DECP</option>
+                  <option>DESC</option>
+                  <option>DESU</option>
+                  <option>SESMT</option>
+                </select>
+              </div>
+
+              <div class="field2">
                 <label>Nome</label>
                 <select name="nome" id="nome" required>
                   <option value="">Selecione</option>
@@ -343,22 +376,6 @@ select{ padding-left: 14px; }
                   <option value="ejs5@energisa.com.br">ejs5@energisa.com.br</option>
                   <option value="wesley.souza@energisa.com.br">wesley.souza@energisa.com.br</option>
                   <option value="wandemberg.costa@energisa.com.br">wandemberg.costa@energisa.com.br</option>
-                </select>
-              </div>
-
-              <div class="field2">
-                <label>Departamento</label>
-                <select name="departamento" required>
-                  <option value="">Selecione</option>
-                  <option>DEOP</option>
-                  <option>DCMD</option>
-                  <option>AUTOMAÇÃO</option>
-                  <option>DCMD_LV</option>
-                  <option>DEAT</option>
-                  <option>DECP</option>
-                  <option>DESC</option>
-                  <option>DESU</option>
-                  <option>SESMT</option>
                 </select>
               </div>
 
@@ -382,89 +399,88 @@ select{ padding-left: 14px; }
                 <input type="text" name="elementos" required>
               </div>
 
+              <div class="field2 full">
+                <label>Equipamentos Isolantes</label>
+                <select name="equipamentos" required>
+                  <option value="">Selecione</option>
+                  <option>Aterramento MT</option>
+                  <option>Andaime Isolante</option>
+                  <option>Banqueta Isolada</option>
+                  <option>Bastão Aspiral</option>
+                  <option>Bastão de Berço</option>
+                  <option>Bastão de Tração</option>
+                  <option>Bastão Garra</option>
+                  <option>Bastão Liso</option>
+                  <option>Bastão Pega tudo</option>
+                  <option>Bastão Separador de Corda</option>
+                  <option>Bastão Suporte By Pass</option>
+                  <option>Bastão Tensor</option>
+                  <option>Bastão Universal</option>
+                  <option>Bastão Vara de Manobra</option>
+                  <option>Bastão Vara Telescópica</option>
+                  <option>By Pass</option>
+                  <option>Cobertura Circular</option>
+                  <option>Cobertura de Cond. Flexivel</option>
+                  <option>Cobertura de Cond. Rigida</option>
+                  <option>Escada 13.8 kV</option>
+                  <option>Escada 69 kV</option>
+                  <option>Escada Pedarol</option>
+                  <option>Fasimetro</option>
+                  <option>Lençou Isolante LV</option>
+                  <option>Luva Isolante BT</option>
+                  <option>Luva Isolante MT</option>
+                  <option>Luva Isolante SED</option>
+                  <option>Manga Isolante BT</option>
+                  <option>Manga Isolante MT</option>
+                  <option>Manta Isolante BT</option>
+                  <option>Separador de Escada</option>
+                  <option>SKY Lança Classe B - 69 KW</option>
+                  <option>SKY Lança Classe C - 46 KW</option>
+                  <option>SKY Liner</option>
+                  <option>Talha</option>
+                  <option>Tesourão a Distância</option>
+                  <option>Tesourão Pequeno</option>
+                  <option>Travessa de Andaime</option>
+                </select>
+              </div>
+
+              <div class="field2 full">
+                <label>Tipo de Ensaio</label>
+                <select name="tipo_ensaio" required>
+                  <option value="">Selecione</option>
+                  <option>Tensão Aplicada 30KV C.A por 1 min</option>
+                  <option>Tensão Aplicada 5KV C.A por 1 min</option>
+                  <option>Tensão Aplicada 20KV C.A por 1 min</option>
+                  <option>Tensão Aplicada 100KV C.A por 1 min a cada 30cm</option>
+                  <option>Tensão Aplicada 40KV C.A por 1 min</option>
+                  <option>Tensão Aplicada 15KV C.A por 1 min</option>
+                  <option>Tensão Aplicada 100KV C.A por 1 min</option>
+                  <option>Tensão Aplicada 50KV C.A por 1 min</option>
+                  <option>Tensão Aplicada 24KV C.A por 1 min</option>
+                  <option>Tensão Aplicada 14KV C.A por 1 min</option>
+                </select>
+              </div>
+
+              <div class="field2 full">
+                <label>Norma Utilizada</label>
+                <select name="norma" required>
+                  <option value="">Selecione</option>
+                  <option>NBR 10622 - Luvas isolantes de borracha</option>
+                  <option>NBR 10623 - Mangas isolantes de borracha</option>
+                  <option>NBR 11854 - Bastão isolante para trabalho em redes energizadas de distribuição</option>
+                  <option>NBR 11855 - Plataforma isolante para trabalho em redes energizadas de distribuição</option>
+                  <option>NBR 11856 - Ferramentas e acessórios para trabalhos em redes energizadas de distribuição</option>
+                  <option>NBR 14540 - Bastão e escada isolantes e ferragens para trabalho em instalação energizada – Transmissão</option>
+                  <option>NBR 16092 - Cestas aéreas</option>
+                  <option>NBR 5720 - Coberturas sólidas</option>
+                  <option>NBR 8221 - Capacete de segurança para uso ocupacional</option>
+                </select>
+              </div>
+
               <div class="field2">
                 <label>Corrente de Fuga (µA)</label>
                 <input type="number" step="0.01" name="corrente_fuga" required>
               </div>
-
-              <div class="field2 full">
-  <label>Equipamentos Isolantes</label>
-  <select name="equipamentos" required>
-    <option value="">Selecione</option>
-    <option>Aterramento MT</option>
-    <option>Andaime Isolante</option>
-    <option>Banqueta Isolada</option>
-    <option>Bastão Aspiral</option>
-    <option>Bastão de Berço</option>
-    <option>Bastão de Tração</option>
-    <option>Bastão Garra</option>
-    <option>Bastão Liso</option>
-    <option>Bastão Pega tudo</option>
-    <option>Bastão Separador de Corda</option>
-    <option>Bastão Suporte By Pass</option>
-    <option>Bastão Tensor</option>
-    <option>Bastão Universal</option>
-    <option>Bastão Vara de Manobra</option>
-    <option>Bastão Vara Telescópica</option>
-    <option>By Pass</option>
-    <option>Cobertura Circular</option>
-    <option>Cobertura de Cond. Flexivel</option>
-    <option>Cobertura de Cond. Rigida</option>
-    <option>Escada 13.8 kV</option>
-    <option>Escada 69 kV</option>
-    <option>Escada Pedarol</option>
-    <option>Fasimetro</option>
-    <option>Lençou Isolante LV</option>
-    <option>Luva Isolante BT</option>
-    <option>Luva Isolante MT</option>
-    <option>Luva Isolante SED</option>
-    <option>Manga Isolante BT</option>
-    <option>Manga Isolante MT</option>
-    <option>Manta Isolante BT</option>
-    <option>Separador de Escada</option>
-    <option>SKY Lança Classe B - 69 KW</option>
-    <option>SKY Lança Classe C - 46 KW</option>
-    <option>SKY Liner</option>
-    <option>Talha</option>
-    <option>Tesourão a Distância</option>
-    <option>Tesourão Pequeno</option>
-    <option>Travessa de Andaime</option>
-  </select>
-</div>
-
-<div class="field2 full">
-  <label>Tipo de Ensaio</label>
-  <select name="tipo_ensaio" required>
-    <option value="">Selecione</option>
-    <option>Tensão Aplicada 30KV C.A por 1 min</option>
-    <option>Tensão Aplicada 5KV C.A por 1 min</option>
-    <option>Tensão Aplicada 20KV C.A por 1 min</option>
-    <option>Tensão Aplicada 100KV C.A por 1 min a cada 30cm</option>
-    <option>Tensão Aplicada 40KV C.A por 1 min</option>
-    <option>Tensão Aplicada 15KV C.A por 1 min</option>
-    <option>Tensão Aplicada 100KV C.A por 1 min</option>
-    <option>Tensão Aplicada 50KV C.A por 1 min</option>
-    <option>Tensão Aplicada 24KV C.A por 1 min</option>
-    <option>Tensão Aplicada 14KV C.A por 1 min</option>
-  </select>
-</div>
-
-<div class="field2 full">
-  <label>Norma Utilizada</label>
-  <select name="norma" required>
-    <option value="">Selecione</option>
-    <option>NBR 10622 - Luvas isolantes de borracha</option>
-    <option>NBR 10623 - Mangas isolantes de borracha</option>
-    <option>NBR 11854 - Bastão isolante para trabalho em redes energizadas de distribuição</option>
-    <option>NBR 11855 - Plataforma isolante para trabalho em redes energizadas de distribuição</option>
-    <option>NBR 11856 - Ferramentas e acessórios para trabalhos em redes energizadas de distribuição</option>
-    <option>NBR 14540 - Bastão e escada isolantes e ferragens para trabalho em instalação energizada – Transmissão</option>
-    <option>NBR 16092 - Cestas aéreas</option>
-    <option>NBR 5720 - Coberturas sólidas</option>
-    <option>NBR 8221 - Capacete de segurança para uso ocupacional</option>
-  </select>
-</div>
-
 
               <div class="field2">
                 <label>Resultado</label>
@@ -492,7 +508,6 @@ select{ padding-left: 14px; }
 <script>
   const WORKER_URL = "https://ensai-dieletrico.pedro-fillype.workers.dev";
 
-  // ====== Views ======
   function showLogin() {
     document.getElementById("loginView").style.display = "block";
     document.getElementById("formView").style.display = "none";
@@ -503,7 +518,6 @@ select{ padding-left: 14px; }
     document.getElementById("data").value = new Date().toISOString().split("T")[0];
   }
 
-  // Se já tem token, entra direto
   window.onload = () => {
     const token = localStorage.getItem("token");
     const matricula = localStorage.getItem("matricula") || "logado";
@@ -559,7 +573,6 @@ select{ padding-left: 14px; }
 
       if (!r.ok) {
         showError(j.error || "Usuário ou senha inválidos.");
-        setLoading(false);
         return;
       }
 
@@ -595,8 +608,7 @@ select{ padding-left: 14px; }
   );
 
   nomeEl.addEventListener("change", () => {
-    const nome = nomeEl.value;
-    emailEl.value = nomeParaEmail[nome] || "";
+    emailEl.value = nomeParaEmail[nomeEl.value] || "";
   });
 
   emailEl.addEventListener("change", () => {
