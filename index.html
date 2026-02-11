@@ -183,24 +183,27 @@ function logout() {
 }
 
 async function fazerLogin() {
-  const matricula = document.getElementById("matricula").value;
-  const senha = document.getElementById("senha").value;
+  const matricula = document.getElementById("matricula").value.trim();
+  const senha = document.getElementById("senha").value.trim();
 
-  const r = await fetch(WORKER_URL + "/login", {
-    method: "POST",
-    headers: {"Content-Type":"application/json"},
-    body: JSON.stringify({ matricula, senha })
-  });
+  try {
+    const r = await fetch(WORKER_URL + "/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ matricula, senha })
+    });
 
-  const j = await r.json();
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) {
+      alert(j.error || "Falha no login");
+      return;
+    }
 
-  if (!r.ok) {
-    alert(j.error);
-    return;
+    localStorage.setItem("token", j.token);
+    mostrarFormulario();
+  } catch (e) {
+    alert("Falha ao conectar no Worker (verifique se publicou e se o /login está ok).");
   }
-
-  localStorage.setItem("token", j.token);
-  mostrarFormulario();
 }
 
 // Auto preencher nome/email
