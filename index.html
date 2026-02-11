@@ -103,20 +103,21 @@
     <input type="date" name="data" id="data" required>
  
     <label>Nome:</label>
-    <select name="nome" required>
-      <option value="">Selecione</option>
-      <option>Ednaldo Jose dos Santos</option>
-      <option>Wesley Fernandes de Souza</option>
-      <option>Wandemberg Angelo da Costa</option>
-      </select>
+<select name="nome" id="nome" required>
+  <option value="">Selecione</option>
+  <option value="Ednaldo Jose dos Santos">Ednaldo Jose dos Santos</option>
+  <option value="Wesley Fernandes de Souza">Wesley Fernandes de Souza</option>
+  <option value="Wandemberg Angelo da Costa">Wandemberg Angelo da Costa</option>
+</select>
 
-    <label>Email:</label>
-    <select name="email" required>
-      <option value="">Selecione</option>
-      <option>ejs5@energisa.com.br</option>
-      <option>wesley.souza@energisa.com.br</option>
-      <option>wandemberg.costa@energisa.com.br</option>
-      </select>
+<label>Email:</label>
+<select name="email" id="email" required>
+  <option value="">Selecione</option>
+  <option value="ejs5@energisa.com.br">ejs5@energisa.com.br</option>
+  <option value="wesley.souza@energisa.com.br">wesley.souza@energisa.com.br</option>
+  <option value="wandemberg.costa@energisa.com.br">wandemberg.costa@energisa.com.br</option>
+</select>
+
 
     <label>Departamento:</label>
     <select name="departamento" required>
@@ -240,60 +241,83 @@
 </div>
 
 <script>
-// === DATA AUTOMÁTICA ===
-document.getElementById("data").value = new Date().toISOString().split("T")[0];
+  // === DATA AUTOMÁTICA ===
+  document.getElementById("data").value = new Date().toISOString().split("T")[0];
 
-// === NOME AUTOMÁTICO COM BASE NO EMAIL ===
-document.getElementById("email").addEventListener("input", function () {
-  const email = this.value.toLowerCase();
-  const nomeField = document.getElementById("nome");
+  const nomeEl = document.getElementById("nome");
+  const emailEl = document.getElementById("email");
 
-  const listaNomes = {
-    "wanderberg.costa@energisa.com.br": "Wandemberg Costa",
-    "wandemberg.costa@energisa.com.br": "Wandemberg Costa",
-    "pedro.fillype@energisa.com.br": "Pedro Fillype"
+  // Mapeamentos
+  const nomeParaEmail = {
+    "Ednaldo Jose dos Santos": "ejs5@energisa.com.br",
+    "Wesley Fernandes de Souza": "wesley.souza@energisa.com.br",
+    "Wandemberg Angelo da Costa": "wandemberg.costa@energisa.com.br"
   };
 
-  if (listaNomes[email]) {
-    nomeField.value = listaNomes[email];
-  }
-});
+  const emailParaNome = Object.fromEntries(
+    Object.entries(nomeParaEmail).map(([nome, email]) => [email.toLowerCase(), nome])
+  );
 
-// === ENVIO PARA O WORKER ===
-document.getElementById("formEnsaio").addEventListener("submit", async function(e) {
+  // Nome -> Email
+  nomeEl.addEventListener("change", () => {
+    const nome = nomeEl.value;
+    emailEl.value = nomeParaEmail[nome] || "";
+  });
+
+  // Email -> Nome
+  emailEl.addEventListener("change", () => {
+    const email = (emailEl.value || "").toLowerCase();
+    nomeEl.value = emailParaNome[email] || "";
+  });
+
+  // === ENVIO PARA O WORKER ===
+  document.getElementById("formEnsaio").addEventListener("submit", async function(e) {
     e.preventDefault();
 
     const form = e.target;
 
     const dados = {
-        data: form.data.value,
-        email: form.email.value,
-        nome: form.nome.value,
-        departamento: form.departamento.value,
-        regional: form.regional.value,
-        localidade: form.localidade.value,
-        cod_inicial: form.cod_inicial.value,
-        cod_final: form.cod_final.value,
-        elementos: form.elementos.value,
-        equipamentos: form.equipamentos.value,
-        tipo_ensaio: form.tipo_ensaio.value,
-        norma: form.norma.value,
-        corrente_fuga: form.corrente_fuga.value,
-        resultado: form.resultado.value
+      data: form.data.value,
+      email: form.email.value,
+      nome: form.nome.value,
+      departamento: form.departamento.value,
+      regional: form.regional.value,
+      localidade: form.localidade.value,
+      cod_inicial: form.cod_inicial.value,
+      cod_final: form.cod_final.value,
+      elementos: form.elementos.value,
+      equipamentos: form.equipamentos.value,
+      tipo_ensaio: form.tipo_ensaio.value,
+      norma: form.norma.value,
+      corrente_fuga: form.corrente_fuga.value,
+      resultado: form.resultado.value
     };
 
+    // (Opcional) validação extra no front
+    const ALLOWED_EMAILS = new Set([
+      "ejs5@energisa.com.br",
+      "wesley.souza@energisa.com.br",
+      "wandemberg.costa@energisa.com.br"
+    ]);
+
+    if (!ALLOWED_EMAILS.has((dados.email || "").toLowerCase())) {
+      alert("Email não autorizado.");
+      return;
+    }
+
     const response = await fetch("https://ensai-dieletrico.pedro-fillype.workers.dev/salvar-ensaio", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(dados)
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(dados)
     });
 
     const res = await response.json();
     alert(res.message || res.error);
 
     if (res.message) form.reset();
-});
+  });
 </script>
+
 
 </body>
 </html>
