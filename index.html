@@ -513,6 +513,12 @@
     document.getElementById("formView").style.display = "none";
   }
   function showForm() {
+    const PERMITIDOS = ["9170", "3080117", "3005906", "8667"];
+const matricula = localStorage.getItem("matricula");
+
+if (!PERMITIDOS.includes(matricula)) {
+  document.querySelector("#formEnsaio button[type='submit']").disabled = true;
+}
     document.getElementById("loginView").style.display = "none";
     document.getElementById("formView").style.display = "block";
     document.getElementById("data").value = new Date().toISOString().split("T")[0];
