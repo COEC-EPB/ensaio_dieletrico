@@ -3,121 +3,113 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gerar Laudo do Ensaio Dielétrico</title>
+<title>Ensaio Dielétrico</title>
 
 <style>
-  :root {
-    --azul: #0097CE;
-    --azul-escuro: #0079A6;
-    --laranja: #F36F21;
-    --fundo: #eef3f6;
-  }
+:root {
+  --azul: #0097CE;
+  --azul-escuro: #0079A6;
+  --laranja: #F36F21;
+  --fundo: #eef3f6;
+}
 
-  body {
-    margin: 0;
-    padding: 0;
-    background: var(--fundo);
-    font-family: Arial, sans-serif;
-  }
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--fundo);
+  font-family: Arial, sans-serif;
+}
 
-  .header-bar {
-    width: 100%;
-    height: 6px;
-    background: var(--laranja);
-  }
+.container {
+  max-width: 850px;
+  background: white;
+  margin: 40px auto;
+  padding: 35px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  border-top: 8px solid var(--azul);
+}
 
-  .container {
-    max-width: 850px;
-    background: white;
-    margin: 40px auto;
-    padding: 35px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-    border-top: 8px solid var(--azul);
-  }
+h2 {
+  text-align: center;
+  color: var(--azul-escuro);
+}
 
-  h2 {
-    text-align: center;
-    color: var(--azul-escuro);
-    font-size: 28px;
-    margin-bottom: 25px;
-  }
+input, select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
 
-  label {
-    font-weight: bold;
-    margin-top: 15px;
-    display: block;
-    color: #333;
-  }
+button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: var(--azul);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
 
-  input, select, textarea {
-    width: 100%;
-    padding: 12px;
-    margin-top: 6px;
-    border: 1px solid #ccd4dd;
-    border-radius: 10px;
-    font-size: 15px;
-    transition: 0.3s ease;
-    background: #fafafa;
-  }
+button:hover {
+  background: var(--azul-escuro);
+}
 
-  input:focus, select:focus, textarea:focus {
-    border-color: var(--azul);
-    background: #fff;
-    box-shadow: 0 0 6px rgba(0,151,206,0.3);
-    outline: none;
-  }
+#formContainer {
+  display: none;
+}
 
-  textarea {
-    height: 100px;
-  }
-
-  button {
-    margin-top: 30px;
-    width: 100%;
-    padding: 15px;
-    font-size: 18px;
-    background: var(--azul);
-    border: none;
-    border-radius: 10px;
-    color: white;
-    cursor: pointer;
-    transition: 0.3s ease;
-  }
-
-  button:hover {
-    background: var(--azul-escuro);
-  }
+.logout-btn {
+  background: #dc3545;
+  margin-bottom: 20px;
+}
 </style>
 </head>
 <body>
 
-<div class="header-bar"></div>
+<!-- LOGIN -->
+<div class="container" id="loginContainer">
+  <h2>Login</h2>
 
-<div class="container">
+  <label>Matrícula</label>
+  <input type="text" id="matricula">
+
+  <label>Senha</label>
+  <input type="password" id="senha">
+
+  <button onclick="fazerLogin()">Entrar</button>
+</div>
+
+<!-- FORMULÁRIO -->
+<div class="container" id="formContainer">
+  <button class="logout-btn" onclick="logout()">Sair</button>
+
   <h2>Formulário – Ensaio Dielétrico</h2>
 
   <form id="formEnsaio">
 
     <label>Data:</label>
     <input type="date" name="data" id="data" required>
- 
+
     <label>Nome:</label>
-<select name="nome" id="nome" required>
-  <option value="">Selecione</option>
-  <option value="Ednaldo Jose dos Santos">Ednaldo Jose dos Santos</option>
-  <option value="Wesley Fernandes de Souza">Wesley Fernandes de Souza</option>
-  <option value="Wandemberg Angelo da Costa">Wandemberg Angelo da Costa</option>
-</select>
+    <select name="nome" id="nome" required>
+      <option value="">Selecione</option>
+      <option value="Ednaldo Jose dos Santos">Ednaldo Jose dos Santos</option>
+      <option value="Wesley Fernandes de Souza">Wesley Fernandes de Souza</option>
+      <option value="Wandemberg Angelo da Costa">Wandemberg Angelo da Costa</option>
+    </select>
 
-<label>Email:</label>
-<select name="email" id="email" required>
-  <option value="">Selecione</option>
-  <option value="ejs5@energisa.com.br">ejs5@energisa.com.br</option>
-  <option value="wesley.souza@energisa.com.br">wesley.souza@energisa.com.br</option>
-  <option value="wandemberg.costa@energisa.com.br">wandemberg.costa@energisa.com.br</option>
-</select>
-
+    <label>Email:</label>
+    <select name="email" id="email" required>
+      <option value="">Selecione</option>
+      <option value="ejs5@energisa.com.br">ejs5@energisa.com.br</option>
+      <option value="wesley.souza@energisa.com.br">wesley.souza@energisa.com.br</option>
+      <option value="wandemberg.costa@energisa.com.br">wandemberg.costa@energisa.com.br</option>
+    </select>
 
     <label>Departamento:</label>
     <select name="departamento" required>
@@ -153,82 +145,10 @@
     <label>Elementos:</label>
     <input type="text" name="elementos" required>
 
-    <label>Equipamentos Isolantes:</label>
-    <select name="equipamentos" required>
-      <option value="">Selecione</option>
-      <option>Aterramento MT</option>
-<option>Andaime Isolante</option>
-<option>Banqueta Isolada</option>
-<option>Bastão Aspiral</option>
-<option>Bastão de Berço</option>
-<option>Bastão de Tração</option>
-<option>Bastão Garra</option>
-<option>Bastão Liso</option>
-<option>Bastão Pega tudo</option>
-<option>Bastão Separador de Corda</option>
-<option>Bastão Suporte By Pass</option>
-<option>Bastão Tensor</option>
-<option>Bastão Universal</option>
-<option>Bastão Vara de Manobra</option>
-<option>Bastão Vara Telescópica</option>
-<option>By Pass</option>
-<option>Cobertura Circular</option>
-<option>Cobertura de Cond. Flexivel</option>
-<option>Cobertura de Cond. Rigida</option>
-<option>Escada 13.8 kV</option>
-<option>Escada 69 kV</option>
-<option>Escada Pedarol</option>
-<option>Fasimetro</option>
-<option>Lençou Isolante LV</option>
-<option>Luva Isolante BT</option>
-<option>Luva Isolante MT</option>
-<option>Luva Isolante SED</option>
-<option>Manga Isolante BT</option>
-<option>Manga Isolante MT</option>
-<option>Manta Isolante BT</option>
-<option>Separador de Escada</option>
-<option>SKY Lança Classe B - 69 KW</option>
-<option>SKY Lança Classe C - 46 KW</option>
-<option>SKY Liner</option>
-<option>Talha</option>
-<option>Tesourão a Distância</option>
-<option>Tesourão Pequeno</option>
-<option>Travessa de Andaime</option>
-    </select>
+    <label>Corrente de Fuga (µA):</label>
+    <input type="number" step="0.01" name="corrente_fuga" required>
 
-    <label>Tipo de Ensaio:</label>
-<select name="tipo_ensaio" required>
-  <option value="">Selecione</option>
-  <option>Tensão Aplicada 30KV C.A por 1 min</option>
-  <option>Tensão Aplicada 5KV C.A por 1 min</option>
-  <option>Tensão Aplicada 20KV C.A por 1 min</option>
-  <option>Tensão Aplicada 100KV C.A por 1 min a cada 30cm</option>
-  <option>Tensão Aplicada 40KV C.A por 1 min</option>
-  <option>Tensão Aplicada 15KV C.A por 1 min</option>
-  <option>Tensão Aplicada 100KV C.A por 1 min</option>
-  <option>Tensão Aplicada 50KV C.A por 1 min</option>
-  <option>Tensão Aplicada 24KV C.A por 1 min</option>
-  <option>Tensão Aplicada 14KV C.A por 1 min</option>
-</select>
-
-<label>Norma Utilizada:</label>
-<select name="norma" required>
-  <option value="">Selecione</option>
-  <option>NBR 10622 - Luvas isolantes de borracha</option>
-<option>NBR 10623 - Mangas isolantes de borracha</option>
-<option>NBR 11854 - Bastão isolante para trabalho em redes energizadas de distribuição</option>
-<option>NBR 11855 - Plataforma isolante para trabalho em redes energizadas de distribuição</option>
-<option>NBR 11856 - Ferramentas e acessórios para trabalhos em redes energizadas de distribuição</option>
-<option>NBR 14540 - Bastão e escada isolantes e ferragens para trabalho em instalação energizada – Transmissão</option>
-<option>NBR 16092 - Cestas aéreas</option>
-<option>NBR 5720 - Coberturas sólidas</option>
-<option>NBR 8221 - Capacete de segurança para uso ocupacional</option>
-</select>
-
-    <label>Correntes de Fuga (µA):</label>
-    <input type="number" step="0.01" name="corrente_fuga" placeholder="Ex: 1.25" required>
-
-    <label>Resultado do Ensaio:</label>
+    <label>Resultado:</label>
     <select name="resultado" required>
       <option value="">Selecione</option>
       <option>Aprovado</option>
@@ -241,83 +161,96 @@
 </div>
 
 <script>
-  // === DATA AUTOMÁTICA ===
+const WORKER_URL = "https://ensai-dieletrico.pedro-fillype.workers.dev";
+
+// Verifica se já está logado
+window.onload = () => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    mostrarFormulario();
+  }
+};
+
+function mostrarFormulario() {
+  document.getElementById("loginContainer").style.display = "none";
+  document.getElementById("formContainer").style.display = "block";
   document.getElementById("data").value = new Date().toISOString().split("T")[0];
+}
 
-  const nomeEl = document.getElementById("nome");
-  const emailEl = document.getElementById("email");
+function logout() {
+  localStorage.removeItem("token");
+  location.reload();
+}
 
-  // Mapeamentos
-  const nomeParaEmail = {
-    "Ednaldo Jose dos Santos": "ejs5@energisa.com.br",
-    "Wesley Fernandes de Souza": "wesley.souza@energisa.com.br",
-    "Wandemberg Angelo da Costa": "wandemberg.costa@energisa.com.br"
-  };
+async function fazerLogin() {
+  const matricula = document.getElementById("matricula").value;
+  const senha = document.getElementById("senha").value;
 
-  const emailParaNome = Object.fromEntries(
-    Object.entries(nomeParaEmail).map(([nome, email]) => [email.toLowerCase(), nome])
-  );
-
-  // Nome -> Email
-  nomeEl.addEventListener("change", () => {
-    const nome = nomeEl.value;
-    emailEl.value = nomeParaEmail[nome] || "";
+  const r = await fetch(WORKER_URL + "/login", {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({ matricula, senha })
   });
 
-  // Email -> Nome
-  emailEl.addEventListener("change", () => {
-    const email = (emailEl.value || "").toLowerCase();
-    nomeEl.value = emailParaNome[email] || "";
+  const j = await r.json();
+
+  if (!r.ok) {
+    alert(j.error);
+    return;
+  }
+
+  localStorage.setItem("token", j.token);
+  mostrarFormulario();
+}
+
+// Auto preencher nome/email
+const nomeParaEmail = {
+  "Ednaldo Jose dos Santos": "ejs5@energisa.com.br",
+  "Wesley Fernandes de Souza": "wesley.souza@energisa.com.br",
+  "Wandemberg Angelo da Costa": "wandemberg.costa@energisa.com.br"
+};
+
+const emailParaNome = Object.fromEntries(
+  Object.entries(nomeParaEmail).map(([n,e]) => [e,n])
+);
+
+document.getElementById("nome").addEventListener("change", e => {
+  document.getElementById("email").value = nomeParaEmail[e.target.value] || "";
+});
+
+document.getElementById("email").addEventListener("change", e => {
+  document.getElementById("nome").value = emailParaNome[e.target.value] || "";
+});
+
+// Envio protegido com token
+document.getElementById("formEnsaio").addEventListener("submit", async function(e){
+  e.preventDefault();
+
+  const token = localStorage.getItem("token");
+  if (!token) {
+    alert("Sessão expirada.");
+    return;
+  }
+
+  const form = e.target;
+
+  const dados = Object.fromEntries(new FormData(form).entries());
+
+  const response = await fetch(WORKER_URL + "/salvar-ensaio", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + token
+    },
+    body: JSON.stringify(dados)
   });
 
-  // === ENVIO PARA O WORKER ===
-  document.getElementById("formEnsaio").addEventListener("submit", async function(e) {
-    e.preventDefault();
+  const res = await response.json();
+  alert(res.message || res.error);
 
-    const form = e.target;
-
-    const dados = {
-      data: form.data.value,
-      email: form.email.value,
-      nome: form.nome.value,
-      departamento: form.departamento.value,
-      regional: form.regional.value,
-      localidade: form.localidade.value,
-      cod_inicial: form.cod_inicial.value,
-      cod_final: form.cod_final.value,
-      elementos: form.elementos.value,
-      equipamentos: form.equipamentos.value,
-      tipo_ensaio: form.tipo_ensaio.value,
-      norma: form.norma.value,
-      corrente_fuga: form.corrente_fuga.value,
-      resultado: form.resultado.value
-    };
-
-    // (Opcional) validação extra no front
-    const ALLOWED_EMAILS = new Set([
-      "ejs5@energisa.com.br",
-      "wesley.souza@energisa.com.br",
-      "wandemberg.costa@energisa.com.br"
-    ]);
-
-    if (!ALLOWED_EMAILS.has((dados.email || "").toLowerCase())) {
-      alert("Email não autorizado.");
-      return;
-    }
-
-    const response = await fetch("https://ensai-dieletrico.pedro-fillype.workers.dev/salvar-ensaio", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(dados)
-    });
-
-    const res = await response.json();
-    alert(res.message || res.error);
-
-    if (res.message) form.reset();
-  });
+  if (res.message) form.reset();
+});
 </script>
-
 
 </body>
 </html>
