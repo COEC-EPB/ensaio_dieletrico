@@ -394,6 +394,24 @@ button:hover{
 .section:hover{
   transform: translateY(-1px);
 }
+  .top-actions{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+}
+
+.btn-listar{
+  width: auto;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #0ea5e9, #0284c7);
+  box-shadow: 0 12px 25px rgba(14,165,233,.18);
+  font-weight: 900;
+}
+
+.btn-listar:hover{
+  filter: brightness(1.03);
+}
 </style>
 </head>
 
@@ -448,24 +466,29 @@ button:hover{
     <div id="formView">
       <div class="card">
         <div class="topbar">
-          <div class="title">
-            <i class="bi bi-clipboard2-check"></i>
-            <span>Registro de Ensaio</span>
-            <span class="badge" id="badgeUser">logado</span>
-          </div>
-          <a id="btnListar" 
-   href="https://coec-epb.github.io/listar_ensaios/" 
-   target="_blank"
-   style="display:none; text-decoration:none;">
-   <button style="background:#0ea5e9;">
-     <i class="bi bi-list-ul"></i>
-     Listar Ensaios
-   </button>
-</a>
-          <button class="btn-logout" onclick="logout()">
-            <i class="bi bi-box-arrow-right"></i> Sair
-          </button>
-        </div>
+  <div class="title">
+    <i class="bi bi-clipboard2-check"></i>
+    <span>Registro de Ensaio</span>
+    <span class="badge" id="badgeUser">logado</span>
+  </div>
+
+  <!-- ✅ AÇÕES À DIREITA (Listar + Sair) -->
+  <div class="top-actions">
+    <a id="btnListar"
+       href="https://coec-epb.github.io/listar_ensaios/"
+       target="_blank"
+       style="display:none; text-decoration:none;">
+      <button class="btn-listar" type="button">
+        <i class="bi bi-list-ul"></i>
+        Listar Ensaios
+      </button>
+    </a>
+
+    <button class="btn-logout" onclick="logout()" type="button">
+      <i class="bi bi-box-arrow-right"></i> Sair
+    </button>
+  </div>
+</div>
 
         <div class="content">
           <div class="form-title">Formulário – Ensaio Dielétrico</div>
