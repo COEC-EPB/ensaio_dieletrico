@@ -591,7 +591,7 @@ button:hover{
 
       <div class="field2">
         <label>Regional</label>
-        <select name="regional" required>
+        <select name="regional" id="regional" required>
           <option value="">Selecione</option>
           <option>Leste</option>
           <option>Centro</option>
@@ -600,9 +600,11 @@ button:hover{
       </div>
 
       <div class="field2">
-        <label>Localidade</label>
-        <input type="text" name="localidade" required>
-      </div>    
+  <label>Localidade</label>
+  <select name="localidade" id="localidade" required>
+    <option value="">Selecione a regional primeiro</option>
+  </select>
+</div>
     </div>
   </div>
 
@@ -924,6 +926,55 @@ function aplicarPermissoesUI() {
       alert("Falha ao conectar no servidor.");
     }
   });
+
+  // ===== Regional -> Localidade =====
+
+const regionalEl = document.getElementById("regional");
+const localidadeEl = document.getElementById("localidade");
+
+const localidades = {
+  "Leste": [
+    "JOÃO PESSOA",
+    "ITABAIANA",
+    "MAMANGUAPE"
+  ],
+
+  "Centro": [
+    "BORBOREMA",
+    "CAMPINA GRANDE",
+    "MONTEIRO",
+    "GUARABIRA",
+    "ESPERANÇA"
+  ],
+
+  "Oeste": [
+    "PATOS",
+    "SOUSA",
+    "CATOLÉ DO ROCHA",
+    "ITAPORANGA"
+  ]
+};
+
+regionalEl.addEventListener("change", () => {
+
+  const regional = regionalEl.value;
+
+  localidadeEl.innerHTML = '<option value="">Selecione</option>';
+
+  if (!localidades[regional]) return;
+
+  localidades[regional].forEach(loc => {
+
+    const option = document.createElement("option");
+
+    option.value = loc;
+    option.textContent = loc;
+
+    localidadeEl.appendChild(option);
+
+  });
+
+});
 </script>
 
 </body>
