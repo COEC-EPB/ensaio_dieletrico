@@ -756,7 +756,7 @@ button:hover{
   const WORKER_URL = "https://ensai-dieletrico.pedro-fillype.workers.dev";
 
 function aplicarPermissoesUI() {
-  const PERMITIDOS = ["9170", "3080117", "3005906", "8667"];
+  const PERMITIDOS = ["9170", "3080117", "3005906", "8667","10405"];
   const matricula = localStorage.getItem("matricula") || "";
 
   // botão "Listar Ensaios"
@@ -877,8 +877,10 @@ function aplicarPermissoesUI() {
     "Ednaldo Jose dos Santos": "ejs5@energisa.com.br",
     "Wesley Fernandes de Souza": "wesley.souza@energisa.com.br",
     "Wandemberg Angelo da Costa": "wandemberg.costa@energisa.com.br"
+    "Arnobio Junior do Nascimento Ferreira": "ajnf@energisa.com.br"
   };
-  const emailParaNome = Object.fromEntries(
+
+    const emailParaNome = Object.fromEntries(
     Object.entries(nomeParaEmail).map(([n,e]) => [e.toLowerCase(), n])
   );
 
