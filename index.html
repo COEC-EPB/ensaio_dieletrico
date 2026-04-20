@@ -493,6 +493,7 @@ button:hover{
         </form>
 
         <div class="erro" id="erro"></div>
+      </div>
     </div>
 
     <!-- FORM VIEW -->
@@ -876,10 +877,9 @@ function aplicarPermissoesUI() {
     "Ednaldo Jose dos Santos": "ejs5@energisa.com.br",
     "Wesley Fernandes de Souza": "wesley.souza@energisa.com.br",
     "Wandemberg Angelo da Costa": "wandemberg.costa@energisa.com.br",
-    "Arnobio Junior do Nascimento Ferreira": "ajnf@energisa.com.br"
+    "Arnobio Junior do Nascimento Ferreira" : "ajnf@energisa.com.br"
   };
-
-    const emailParaNome = Object.fromEntries(
+  const emailParaNome = Object.fromEntries(
     Object.entries(nomeParaEmail).map(([n,e]) => [e.toLowerCase(), n])
   );
 
