@@ -930,6 +930,8 @@ function aplicarPermissoesUI() {
     }
   });
 
+  
+
   // ===== Regional -> Localidade =====
 
 const regionalEl = document.getElementById("regional");
@@ -976,8 +978,38 @@ regionalEl.addEventListener("change", () => {
     localidadeEl.appendChild(option);
 
   });
+  
 
 });
+
+  // ====== Cálculo automático de elementos ======
+const codInicialEl = document.querySelector("input[name='cod_inicial']");
+const codFinalEl = document.querySelector("input[name='cod_final']");
+const elementosEl = document.querySelector("input[name='elementos']");
+
+// deixa somente leitura (opcional, mas recomendado)
+elementosEl.readOnly = true;
+
+function calcularElementos() {
+  const inicial = parseInt(codInicialEl.value);
+  const final = parseInt(codFinalEl.value);
+
+  if (!isNaN(inicial) && !isNaN(final)) {
+    if (final >= inicial) {
+      elementosEl.value = final - inicial;
+    } else {
+      elementosEl.value = "";
+    }
+  } else {
+    elementosEl.value = "";
+  }
+}
+
+// escuta mudanças
+codInicialEl.addEventListener("input", calcularElementos);
+codFinalEl.addEventListener("input", calcularElementos);
+
+  elementosEl.value = (final - inicial) + 1;
 </script>
  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ab3e837119ed4133bd616d3b06ef0e25"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
