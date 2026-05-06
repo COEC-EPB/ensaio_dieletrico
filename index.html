@@ -996,7 +996,7 @@ function calcularElementos() {
 
   if (!isNaN(inicial) && !isNaN(final)) {
     if (final >= inicial) {
-      elementosEl.value = final - inicial;
+      elementosEl.value = (final - inicial)+1;
     } else {
       elementosEl.value = "";
     }
