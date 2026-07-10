@@ -703,6 +703,15 @@ button:hover{
         </select>
       </div>
 
+      <div class="field2 full" id="campoSubestacao" style="display:none;">
+    <label>Subestação</label>
+    <input
+        type="text"
+        name="subestacao"
+        id="subestacao"
+        placeholder="Ex.: MUSSURÉ">
+</div>
+
       <div class="field2 full">
         <label>Norma Utilizada</label>
         <select name="norma" required>
@@ -1004,6 +1013,26 @@ function calcularElementos() {
     elementosEl.value = "";
   }
 }
+  const tipoEnsaio = document.querySelector("select[name='tipo_ensaio']");
+const campoSubestacao = document.getElementById("campoSubestacao");
+const inputSubestacao = document.getElementById("subestacao");
+
+tipoEnsaio.addEventListener("change", () => {
+
+    if (tipoEnsaio.value === "Tensão Aplicada 40KV C.A por 1 min") {
+
+        campoSubestacao.style.display = "block";
+        inputSubestacao.required = true;
+
+    } else {
+
+        campoSubestacao.style.display = "none";
+        inputSubestacao.required = false;
+        inputSubestacao.value = "";
+
+    }
+
+});
 
 // escuta mudanças
 codInicialEl.addEventListener("input", calcularElementos);
